@@ -27,9 +27,9 @@ export default function TabLayout() {
         }),
       }}>
       <Tabs.Screen
-        name="index"
+        name="admin"
         options={{
-          title: 'Home',
+          title: 'Admin Panel',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
