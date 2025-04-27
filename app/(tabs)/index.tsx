@@ -7,10 +7,8 @@ const Stack = createNativeStackNavigator();
 
 export default function HomeScreen() {
   return (
-    <NavigationContainer>
       <Stack.Navigator initialRouteName='AdminLogin'>
         <Stack.Screen name ='AdminLogin' component={AdminLogin} options={{headerShown: false}}/>
       </Stack.Navigator>
-    </NavigationContainer>
   );
 }

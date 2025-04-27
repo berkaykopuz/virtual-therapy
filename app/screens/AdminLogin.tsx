@@ -1,7 +1,7 @@
 import { FIREBASE_AUTH } from '@/FirebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 
 const AdminLogin = () => {
 
@@ -13,10 +13,11 @@ const AdminLogin = () => {
   const signIn = async () => {
     setLoading(true);
     try{
-        const response = await auth.signInWithEmailAndPassword(email, password);
+        const response = await signInWithEmailAndPassword(auth, email, password);
         console.log(response);
-    }catch(error){
+    }catch(error: any){
         console.log(error);
+        alert('Sign in failed: ' + error.message);
     }finally{
         setLoading(false)
     }
@@ -25,25 +26,27 @@ const AdminLogin = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Admin Girişi</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Email"
-        value={email}
-        autoCapitalize="none"
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Şifre"
-        value={password}
-        secureTextEntry
-        onChangeText={setPassword}
-      />
-      { loading ? (<ActivityIndicator size="large" color="#007AFF" />)
-      : 
-      (<Button title='Giriş Yap' onPress={() => {}}/>)
-      }
+        <KeyboardAvoidingView behavior='padding'>
+            <Text style={styles.title}>Admin Girişi</Text>
+            <TextInput
+                style={styles.input}
+                placeholder="Email"
+                value={email}
+                autoCapitalize="none"
+                onChangeText={setEmail}
+            />
+            <TextInput
+                style={styles.input}
+                placeholder="Şifre"
+                value={password}
+                secureTextEntry
+                onChangeText={setPassword}
+            />
+            { loading ? (<ActivityIndicator size="large" color="#007AFF" />)
+            : 
+            (<Button title='Giriş Yap' color="#b8860b" onPress={signIn}/>)
+            }
+        </KeyboardAvoidingView>
     </View>
   );
 };

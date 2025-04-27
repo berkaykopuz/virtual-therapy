@@ -27,17 +27,17 @@ export default function TabLayout() {
         }),
       }}>
       <Tabs.Screen
-        name="admin"
+        name="index"
         options={{
           title: 'Admin Panel',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: () => <IconSymbol size={28} name="house.fill" color="#000000" />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="patient"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Patient',
+          tabBarIcon: () => <IconSymbol size={28} name="paperplane.fill" color="#000000" />,
         }}
       />
     </Tabs>
